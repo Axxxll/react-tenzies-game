@@ -4,9 +4,11 @@ function Die(props: DieT) {
 
     console.log('render')
     return (
-        <p>
-            {props.value}
-        </p>
+        <div className="die-face">
+            <h2 className="die-num">
+                {props.value}
+            </h2>
+        </div>
     )
 }
 

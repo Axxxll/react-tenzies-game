@@ -37,7 +37,10 @@ function App() {
   return (
     <>
       <main>
+        <div className='dice-container'>
           {diceElemets}
+        </div>
+        <button className='roll-dice'>Roll</button>
       </main>
     </>
   )
