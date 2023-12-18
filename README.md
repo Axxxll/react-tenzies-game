@@ -1,6 +1,6 @@
 # General Game
 
-This is the general dice game. It builds uppon the tenzies project from the [scrimba](https://scrimba.com/learn/learnreact) react course.
+This is the General dice game. It builds uppon the tenzies project from the [scrimba](https://scrimba.com/learn/learnreact) react course.
 
 ## Set up
 
