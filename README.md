@@ -4,7 +4,7 @@ This is the general dice game. It builds uppon the tenzies project from the [scr
 
 ## Set up
 
-installing the dependencies
+Installing the dependencies
 ```
   npm i
 ```
