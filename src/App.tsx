@@ -10,7 +10,7 @@ function App() {
 
 
 
-  const diceElemets = dice.map(die => <Die {...die} key={die.id}/>)
+  const diceElemets = dice.map(die => <Die {...die} key={die.id} hold={() => holdDie(die.id)}/>)
 
   function allNewDice() {
     const newDiceArr = []
@@ -20,6 +20,10 @@ function App() {
     }
 
     return newDiceArr
+  }
+
+  function holdDie(id: string) {
+    setDice(prevDice => prevDice.map(die => die.id === id ? {...die, isHeld: !die.isHeld} : die))
   }
 
 
@@ -33,6 +37,10 @@ function App() {
     }
   }
 
+  function rollDice() {
+    setDice(prevDice => prevDice.map(die => die.isHeld ? die : createDie()))
+  }
+
 
   return (
     <>
@@ -40,7 +48,7 @@ function App() {
         <div className='dice-container'>
           {diceElemets}
         </div>
-        <button className='roll-dice'>Roll</button>
+        <button onClick={rollDice} className='roll-dice'>Roll</button>
       </main>
     </>
   )
