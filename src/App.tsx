@@ -10,7 +10,7 @@ function App() {
 
 
 
-  const diceElemets = dice.map(die => <Die {...die} key={die.id} hold={() => holdDie(die.id)}/>)
+  const diceElemets = dice.map(die => <Die {...die} key={die.id} hold={() => holdDie(die.id)} />)
 
   function allNewDice() {
     const newDiceArr = []
@@ -23,7 +23,7 @@ function App() {
   }
 
   function holdDie(id: string) {
-    setDice(prevDice => prevDice.map(die => die.id === id ? {...die, isHeld: !die.isHeld} : die))
+    setDice(prevDice => prevDice.map(die => die.id === id ? { ...die, isHeld: !die.isHeld } : die))
   }
 
 
@@ -44,12 +44,18 @@ function App() {
 
   return (
     <>
-      <main>
-        <div className='dice-container'>
-          {diceElemets}
+      <div className='container'>
+        <div className='card'>
+          <h1 className='title'>General</h1>
+          <p className="instructions">Roll until you get a combo. <br />
+            Click each die to freeze it at its current value between rolls.</p>
+          <div className='dice-container'>
+            {diceElemets}
+          </div>
+          <button onClick={rollDice} className='roll-dice'>Roll</button>
         </div>
-        <button onClick={rollDice} className='roll-dice'>Roll</button>
-      </main>
+        <div className='card'></div>
+      </div>
     </>
   )
 }

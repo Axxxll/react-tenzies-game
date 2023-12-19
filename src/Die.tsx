@@ -6,7 +6,6 @@ function Die(props: DieT) {
         backgroundColor: props.isHeld ? "#59E391" : "white"
     }
 
-    console.log('render')
     return (
         <div className="die-face" style={styles} onClick={props.hold}>
             <h2 className="die-num">
