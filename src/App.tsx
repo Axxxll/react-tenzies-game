@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { nanoid } from 'nanoid'
+
+import getCombinations from './getCombinations'
 import type DieT from './die.type'
 import Die from './Die'
 
@@ -7,6 +9,7 @@ import Die from './Die'
 function App() {
 
   const [dice, setDice] = useState<DieT[]>(allNewDice())
+  const [combinations, setCombinations] = useState(getCombinations())
 
 
 
