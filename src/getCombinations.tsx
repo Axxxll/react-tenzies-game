@@ -15,7 +15,7 @@ export default function getCombinations() {
             threeOfAKind: comboState.NotUsed,
             fourOfAKind: comboState.NotUsed,
             twoPlusTwo: comboState.NotUsed,
-            towPlusThre: comboState.NotUsed,
+            towPlusThree: comboState.NotUsed,
             oneToFive: comboState.NotUsed,
             twoToSix: comboState.NotUsed,
             odd: comboState.NotUsed,

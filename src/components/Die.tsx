@@ -1,4 +1,4 @@
-import DieT from "./die.type";
+import DieT from "../die.type";
 
 function Die(props: DieT) {
 

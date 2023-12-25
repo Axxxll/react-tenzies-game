@@ -3,8 +3,8 @@ import { nanoid } from 'nanoid'
 
 import getCombinations from './getCombinations'
 import type DieT from './die.type'
-import Die from './Die'
-import Combinations from './Combinations'
+import Die from './components/Die'
+import Combinations from './components/Combinations'
 
 
 function App() {
@@ -52,14 +52,19 @@ function App() {
     <>
       <div className='container'>
         <div className='card'>
+
           <h1 className='title'>General</h1>
+
           <p className="instructions">Roll until you get a combo. <br />
             Click each die to freeze it at its current value between rolls.</p>
+
           <div className='dice-container'>
             {diceElements}
           </div>
+
           <button onClick={rollDice} className='roll-dice'>Roll</button>
         </div>
+
         <div className='card'>
           <h4 className='title'>Mandatory</h4>
           <div className='combo-container'>
