@@ -3,9 +3,9 @@ import { comboState } from "./comboState.enum";
 export default function getCombinations() {
     return {
         mandatory: {
-            setOfOne: comboState.NotUsed,
-            setOfTwo: comboState.NotUsed,
-            setOfThree: comboState.NotUsed,
+            setOfOne: comboState.CanBeUsed,
+            setOfTwo: comboState.Scrached,
+            setOfThree: comboState.Used,
             setOfFour: comboState.NotUsed,
             setOfFive: comboState.NotUsed,
             setOfSix: comboState.NotUsed

@@ -15,8 +15,9 @@ function App() {
 
   const diceElements = dice.map(die => <Die {...die} key={die.id} hold={() => holdDie(die.id)} />)
 
-  const mandatoryCombinationsElements = Object.keys(combinations.mandatory).map(key => <Combinations key={key} combo={key} />)
-  const extraCombinationsElements = Object.keys(combinations.extra).map(key => <Combinations key={key} combo={key} />)
+
+  const mandatoryCombinationsElements = Object.keys(combinations.mandatory).map(key => <Combinations key={key} combo={key} comboState={combinations.mandatory[key as keyof typeof combinations.mandatory]} />)
+  const extraCombinationsElements = Object.keys(combinations.extra).map(key => <Combinations key={key} combo={key} comboState={combinations.extra[key as keyof typeof combinations.extra]} />)
 
   function allNewDice() {
     const newDiceArr = []
