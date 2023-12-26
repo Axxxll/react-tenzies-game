@@ -21,7 +21,7 @@ export default function getCombinations() {
             odd: comboState.NotUsed,
             even: comboState.NotUsed,
             chance: comboState.NotUsed,
-            general: comboState.NotUsed
+            general: comboState.Scrached
         }
     }
 }
