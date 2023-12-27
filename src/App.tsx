@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid'
 
 import getCombinations from './shared/getCombinations'
 import type DieT from './shared/die.type'
 import Die from './components/Die'
 import Combinations from './components/Combinations'
+import { comboState } from './shared/comboState.enum'
 
 
 function App() {
@@ -46,6 +47,34 @@ function App() {
 
   function rollDice() {
     setDice(prevDice => prevDice.map(die => die.isHeld ? die : createDie()))
+  }
+
+
+  useEffect(() => {
+    const mandatoryCombo = Object.keys(combinations.mandatory).find(checkForMandatoryCombination)
+
+    if (mandatoryCombo) {
+      setCombinations(prevCombo => {
+
+        return {
+          ...prevCombo,
+          mandatory: {
+            ...prevCombo.mandatory,
+            [mandatoryCombo as keyof typeof combinations.mandatory]: comboState.CanBeUsed
+          }
+        }
+      })
+    }
+
+    console.log(combinations)
+  }, [dice])
+
+
+  function checkForMandatoryCombination(condition: string, index: number): boolean {
+
+    const value = index + 1
+
+    return dice.filter(die => die.value === value).length >= 3
   }
 
 
