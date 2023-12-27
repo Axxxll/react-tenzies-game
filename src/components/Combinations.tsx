@@ -1,5 +1,5 @@
 import { CSSProperties } from "react"
-import { comboState } from "../comboState.enum"
+import { comboState } from "../shared/comboState.enum"
 
 export default function Combinations(props: { combo: string, comboState: number }) {
 

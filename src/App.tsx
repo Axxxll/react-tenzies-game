@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { nanoid } from 'nanoid'
 
-import getCombinations from './getCombinations'
-import type DieT from './die.type'
+import getCombinations from './shared/getCombinations'
+import type DieT from './shared/die.type'
 import Die from './components/Die'
 import Combinations from './components/Combinations'
 
