@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { nanoid } from 'nanoid'
 
 import getCombinations from './shared/getCombinations'
@@ -12,6 +12,7 @@ function App() {
 
   const [dice, setDice] = useState<DieT[]>(allNewDice())
   const [combinations, setCombinations] = useState(getCombinations())
+  const mandatoryCombination = useRef<string | undefined>()
 
 
   const diceElements = dice.map(die => <Die {...die} key={die.id} hold={() => holdDie(die.id)} />)
@@ -51,23 +52,51 @@ function App() {
 
 
   useEffect(() => {
-    const mandatoryCombo = Object.keys(combinations.mandatory).find(checkForMandatoryCombination)
+    const currentMandatoryCombo = Object.keys(combinations.mandatory).find(checkForMandatoryCombination)
 
-    if (mandatoryCombo) {
+    if (currentMandatoryCombo && mandatoryCombination.current !== currentMandatoryCombo) {
+      
       setCombinations(prevCombo => {
 
-        return {
+        const newCombo =  mandatoryCombination.current ? {
           ...prevCombo,
           mandatory: {
             ...prevCombo.mandatory,
-            [mandatoryCombo as keyof typeof combinations.mandatory]: comboState.CanBeUsed
+            [currentMandatoryCombo]: comboState.CanBeUsed,
+            [mandatoryCombination.current]: comboState.NotUsed
+          }
+        } : {
+          ...prevCombo,
+          mandatory: {
+            ...prevCombo.mandatory,
+            [currentMandatoryCombo]: comboState.CanBeUsed,
           }
         }
+
+        mandatoryCombination.current = currentMandatoryCombo
+
+        return newCombo
+      })
+    }
+    else if(!currentMandatoryCombo) {
+      setCombinations(prevCombo => {
+          const {mandatory} = prevCombo
+          for (const key in mandatory) {
+            if(mandatory[key as keyof typeof mandatory] === comboState.CanBeUsed) {
+              mandatory[key as keyof typeof mandatory] = comboState.NotUsed
+            }
+          }
+
+          mandatoryCombination.current = undefined
+
+          return {
+            ...prevCombo,
+            ...mandatory
+          }
       })
     }
 
-    console.log(combinations)
-  }, [dice])
+  }, [dice.map(die => die.value).join(',')])
 
 
   function checkForMandatoryCombination(condition: string, index: number): boolean {
