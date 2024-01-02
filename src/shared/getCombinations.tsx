@@ -1,15 +1,16 @@
 import { comboState } from "./comboState.enum";
+import { nanoid } from 'nanoid'
 
 export default function getCombinations() {
     return {
-        mandatory: {
-            setOfOne: comboState.NotUsed,
-            setOfTwo: comboState.NotUsed,
-            setOfThree: comboState.NotUsed,
-            setOfFour: comboState.NotUsed,
-            setOfFive: comboState.NotUsed,
-            setOfSix: comboState.NotUsed
-        },
+        mandatory: [
+            {combo: "setOfOne", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "setOfTwo", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "setOfThree", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "setOfFour", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "setOfFive", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "setOfSix", comboState: comboState.NotUsed, selected: false, id: nanoid()}
+        ],
         extra: {
             pair: comboState.NotUsed,
             threeOfAKind: comboState.NotUsed,
