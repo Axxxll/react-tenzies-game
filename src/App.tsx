@@ -18,8 +18,8 @@ function App() {
 
 
 
-  const mandatoryCombinationsElements = combinations.mandatory.map(item => <Combinations key={item.id} combo={item.combo} comboState={item.comboState} />)
-  const extraCombinationsElements = Object.keys(combinations.extra).map(key => <Combinations key={key} combo={key} comboState={combinations.extra[key as keyof typeof combinations.extra]} />)
+  const mandatoryCombinationsElements = combinations.mandatory.map(item => <Combinations key={item.id} combo={item.combo} comboState={item.comboState} isSelected={item.selected} select={() => {selectCombo(item.id)}} />)
+  const extraCombinationsElements = Object.keys(combinations.extra).map(key => <Combinations key={key} combo={key} comboState={combinations.extra[key as keyof typeof combinations.extra]} isSelected={false} select={() => {selectCombo(key)}} />)
 
   function allNewDice() {
     const newDiceArr = []
@@ -94,6 +94,10 @@ function App() {
 
     return dice.filter(die => die.value === value).length >= 3
 
+  }
+
+  function selectCombo(id: string) {
+    console.log(id)
   }
 
 
