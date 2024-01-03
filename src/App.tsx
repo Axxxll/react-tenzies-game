@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid'
 
 import getCombinations from './shared/getCombinations'
