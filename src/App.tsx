@@ -12,13 +12,13 @@ function App() {
 
   const [dice, setDice] = useState<DieT[]>(allNewDice())
   const [combinations, setCombinations] = useState(getCombinations())
-  const mandatoryCombination = useRef<string | undefined>()
 
 
   const diceElements = dice.map(die => <Die {...die} key={die.id} hold={() => holdDie(die.id)} />)
 
 
-  const mandatoryCombinationsElements = Object.keys(combinations.mandatory).map(key => <Combinations key={key} combo={key} comboState={combinations.mandatory[key as keyof typeof combinations.mandatory]} />)
+
+  const mandatoryCombinationsElements = combinations.mandatory.map(item => <Combinations key={item.id} combo={item.combo} comboState={item.comboState} />)
   const extraCombinationsElements = Object.keys(combinations.extra).map(key => <Combinations key={key} combo={key} comboState={combinations.extra[key as keyof typeof combinations.extra]} />)
 
   function allNewDice() {
@@ -52,58 +52,48 @@ function App() {
 
 
   useEffect(() => {
-    const currentMandatoryCombo = Object.keys(combinations.mandatory).find(checkForMandatoryCombination)
+    const currentMandatoryCombo = combinations.mandatory.find(checkForMandatoryCombination)
 
-    if (currentMandatoryCombo && mandatoryCombination.current !== currentMandatoryCombo) {
-      
+    if (currentMandatoryCombo) {
+
       setCombinations(prevCombo => {
 
-        const newCombo =  mandatoryCombination.current ? {
+        const newMandatoryCombo = prevCombo.mandatory.map(combo => (
+          currentMandatoryCombo.id === combo.id ?
+            { ...combo, comboState: comboState.CanBeUsed }
+            : (combo.comboState === comboState.CanBeUsed ?
+              { ...combo, comboState: comboState.NotUsed } : combo)))
+
+        return {
           ...prevCombo,
-          mandatory: {
-            ...prevCombo.mandatory,
-            [currentMandatoryCombo]: comboState.CanBeUsed,
-            [mandatoryCombination.current]: comboState.NotUsed
-          }
-        } : {
-          ...prevCombo,
-          mandatory: {
-            ...prevCombo.mandatory,
-            [currentMandatoryCombo]: comboState.CanBeUsed,
-          }
+          mandatory: newMandatoryCombo
         }
 
-        mandatoryCombination.current = currentMandatoryCombo
+      }
 
-        return newCombo
-      })
+      )
     }
-    else if(!currentMandatoryCombo) {
+    else {
       setCombinations(prevCombo => {
-          const {mandatory} = prevCombo
-          for (const key in mandatory) {
-            if(mandatory[key as keyof typeof mandatory] === comboState.CanBeUsed) {
-              mandatory[key as keyof typeof mandatory] = comboState.NotUsed
-            }
-          }
 
-          mandatoryCombination.current = undefined
-
-          return {
-            ...prevCombo,
-            ...mandatory
-          }
+        const newMandatoryArray = prevCombo.mandatory.map(combo => combo.comboState === comboState.CanBeUsed ? {...combo, comboState: comboState.NotUsed} : combo)
+        
+        return {
+          ...prevCombo, 
+          mandatory: newMandatoryArray
+        }
       })
     }
 
   }, [dice.map(die => die.value).join(',')])
 
 
-  function checkForMandatoryCombination(condition: string, index: number): boolean {
+  function checkForMandatoryCombination(condition: object, index: number): boolean | undefined {
 
     const value = index + 1
 
     return dice.filter(die => die.value === value).length >= 3
+
   }
 
 
