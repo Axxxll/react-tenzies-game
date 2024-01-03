@@ -77,6 +77,25 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  background-color: white;
+  border: none
+}
+
+.combo-face.used {
+  cursor: default;
+  color: darkgreen;
+  box-shadow: 0px 2px 2px rgba(0, 250, 0, 0.15);
+}
+
+.combo-face.not-used {
+  color: lightgray;
+}
+
+.combo-face.scrached {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  color: gray;
+  cursor: default;
 }
 
 .combo {
