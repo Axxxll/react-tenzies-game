@@ -11,18 +11,21 @@ export default function getCombinations() {
             {combo: "setOfFive", comboState: comboState.NotUsed, selected: false, id: nanoid()},
             {combo: "setOfSix", comboState: comboState.NotUsed, selected: false, id: nanoid()}
         ],
-        extra: {
-            pair: comboState.NotUsed,
-            threeOfAKind: comboState.NotUsed,
-            fourOfAKind: comboState.NotUsed,
-            twoPlusTwo: comboState.NotUsed,
-            towPlusThree: comboState.NotUsed,
-            oneToFive: comboState.NotUsed,
-            twoToSix: comboState.NotUsed,
-            odd: comboState.NotUsed,
-            even: comboState.NotUsed,
-            chance: comboState.NotUsed,
-            general: comboState.NotUsed
-        }
+        extra: 
+        [
+            {combo: "pair", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "threeOfAKind", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "fourOfAKind", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "twoPlusTwo", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "twoPlusThree", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "oneToFive", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "twoToSix", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "odd", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "even", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "chance", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+            {combo: "general", comboState: comboState.NotUsed, selected: false, id: nanoid()},
+
+
+        ]
     }
 }
