@@ -19,7 +19,7 @@ function App() {
 
 
   const mandatoryCombinationsElements = combinations.mandatory.map(item => <Combinations key={item.id} combo={item.combo} comboState={item.comboState} isSelected={item.selected} select={() => {selectCombo(item.id)}} />)
-  const extraCombinationsElements = Object.keys(combinations.extra).map(key => <Combinations key={key} combo={key} comboState={combinations.extra[key as keyof typeof combinations.extra]} isSelected={false} select={() => {selectCombo(key)}} />)
+  const extraCombinationsElements = combinations.extra.map(item => <Combinations key={item.id} combo={item.combo} comboState={item.comboState} isSelected={item.selected} select={() => {selectCombo(item.id)}} />)
 
   function allNewDice() {
     const newDiceArr = []
