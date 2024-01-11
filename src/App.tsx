@@ -18,8 +18,8 @@ function App() {
 
 
 
-  const mandatoryCombinationsElements = combinations.mandatory.map(item => <Combinations key={item.id} combo={item.combo} comboState={item.comboState} isSelected={item.selected} select={() => {selectCombo(item.id)}} />)
-  const extraCombinationsElements = combinations.extra.map(item => <Combinations key={item.id} combo={item.combo} comboState={item.comboState} isSelected={item.selected} select={() => {selectCombo(item.id)}} />)
+  const mandatoryCombinationsElements = combinations.mandatory.map(item => <Combinations key={item.id} combo={item.combo} comboState={item.comboState} isSelected={item.selected} select={() => {selectCombo(item.id)}} type={"mandatory"} />)
+  const extraCombinationsElements = combinations.extra.map(item => <Combinations key={item.id} combo={item.combo} comboState={item.comboState} isSelected={item.selected} select={() => {selectCombo(item.id)}} type={"extra"} />)
 
   function allNewDice() {
     const newDiceArr = []
@@ -98,6 +98,7 @@ function App() {
 
   function selectCombo(id: string) {
     console.log(id)
+    console.log(combinations)
   }
 
 
